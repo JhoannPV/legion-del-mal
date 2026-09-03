@@ -65,3 +65,11 @@ La Liga de la Justicia y los Vengadores han formado una alianza. Nuestros expedi
 ---
 
 _Este repositorio es propiedad de la Legión del Mal. Acceso no autorizado será castigado con severidad. Si tienes acceso a este repositorio, eres de los nuestros o Brainiac no está trabajando._
+
+# Constacto:
+- **Correo:**
+- **Discord:** [LegionDelMal#0001](https://discord.gg/legiondelmal)
+- **Telegram:** [@LegionDelMal](https://t.me/LegionDelMal)
+- **Twitter:** [@LegionDelMal](https://twitter.com/LegionDelMal)
+- **Sitio web:** [legiondelmal.org](https://legiondelmal.org)
+
