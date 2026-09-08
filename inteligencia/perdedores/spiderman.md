@@ -6,3 +6,10 @@ Spiderman es un superhéroe ficticio que aparece en los cómics publicados por M
 
 - Green Goblin
 - Doctor Octopus
+
+## Familiares
+
+- Tía May
+- Tío Ben
+- Mary Jane Watson
+- Gwen Stacy
