@@ -38,7 +38,7 @@ on:
           - 'fox'
           - 'dragon'
           - 'ghostbusters'
-          - 'king'
+          - 'tux'
 
 jobs:
   transmitir-mensaje:
