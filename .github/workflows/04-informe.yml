@@ -54,6 +54,7 @@ jobs:
                 _Informe generado automáticamente por Brainiac v12.0_
                 _"Los datos no mienten. Los seres orgánicos sí."_
                 EOF
+                
             - name: Brainiac archiva el informe
               run: |
                 git config user.name "Brainiac"
