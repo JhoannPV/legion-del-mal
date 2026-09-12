@@ -26,3 +26,9 @@ Spiderman es un superhéroe ficticio que aparece en los cómics publicados por M
 - Spider-Man: No Way Home (2021)
 - Spider-Man: Across the Spider-Verse (2023)
 - Spider-Man: Beyond the Spider-Verse (2024)
+
+## Estrategia recomendada
+
+- Anular su sentido arácnido mediante distracciones o interferencias sensoriales.
+- Aprovechar su agilidad y reflejos para anticipar sus movimientos.
+- Atacar sus puntos débiles, como sus seres queridos o su equipo de apoyo.
