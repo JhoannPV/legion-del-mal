@@ -29,9 +29,17 @@ jobs:
           TAG: ${{ inputs.tag || github.ref_name }}
         run: |
           RELEASE_SHA="$(git rev-parse "$TAG^{commit}")"
+          TAG_DESCRIPTION="$(git for-each-ref --format='%(subject)' "refs/tags/$TAG")"
+          if [ -z "$TAG_DESCRIPTION" ]; then
+            TAG_DESCRIPTION="$(git log -1 --format=%s "$RELEASE_SHA")"
+          fi
+          RELEASE_TITLE="$TAG - $TAG_DESCRIPTION"
+
           echo "Tag de la versión: $TAG"
+          echo "Nombre del release: $RELEASE_TITLE"
           echo "Commit publicado: $RELEASE_SHA"
           echo "Autor del tag: $GITHUB_ACTOR"
+          echo "RELEASE_TITLE=$RELEASE_TITLE" >> "$GITHUB_ENV"
 
           PREVIOUS_TAG="$(git describe --tags --abbrev=0 "$RELEASE_SHA^" 2>/dev/null || true)"
           if [ -n "$PREVIOUS_TAG" ]; then
@@ -49,5 +57,5 @@ jobs:
           TAG: ${{ inputs.tag || github.ref_name }}
         run: |
           gh release create "$TAG" \
-            --title "$TAG" \
+            --title "$RELEASE_TITLE" \
             --generate-notes
