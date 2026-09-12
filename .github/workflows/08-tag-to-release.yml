@@ -1,0 +1,53 @@
+name: Crear Release desde Tag
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag existente para publicar como release (ej v1.0.0)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  crear-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Brainiac obtiene el historial completo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.tag || github.ref_name }}
+
+      - name: Brainiac registra los cambios de la versión
+        env:
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          RELEASE_SHA="$(git rev-parse "$TAG^{commit}")"
+          echo "Tag de la versión: $TAG"
+          echo "Commit publicado: $RELEASE_SHA"
+          echo "Autor del tag: $GITHUB_ACTOR"
+
+          PREVIOUS_TAG="$(git describe --tags --abbrev=0 "$RELEASE_SHA^" 2>/dev/null || true)"
+          if [ -n "$PREVIOUS_TAG" ]; then
+            echo "Versión anterior: $PREVIOUS_TAG"
+            echo "Cambios incluidos desde $PREVIOUS_TAG:"
+            git log --pretty=format:'- %h %s (%an)' "$PREVIOUS_TAG..$RELEASE_SHA"
+          else
+            echo "No existe una versión anterior; se incluyen todos los cambios:"
+            git log --pretty=format:'- %h %s (%an)' "$RELEASE_SHA"
+          fi
+
+      - name: Brainiac publica el release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --generate-notes
